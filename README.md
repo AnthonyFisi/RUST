@@ -154,3 +154,104 @@ A diferencia con loop con while podemos hacer el mismo procedimiento pero en men
 For
 
 Al momento de usar arrays es mas recomendable usar For en vez de While ya que evitamos tener problema en el acceso de algun indice en el arreglo.Por otro lado al momento de iterar un array en un for automaticamente accedera a cada elemento sin presentar ningun bug.
+
+
+### Ownership
+ 
+
+ #### What is Ownership?
+
+ Ownership is un conjunto de reglas que gobiernan como manejar la memoria en los programas hechos en RUST.
+
+ Si algunas de las caracteristicas no se cumple el programa no compilira.
+
+ Ownership Rules
+
+ - Cada valor en RUST tiene un owner.
+ - Solo un owner por cada valor.
+ - Cuando el owner sale del alcance, el valor sera eliminado.
+
+
+ Variable Scope
+
+   Una variable solo es valido dentro de un determinado alcance.
+
+The String type
+
+   Este tipo de datos es mas complejo por lo tanto ayuda a retratar mejor el tema del ownership porque guardaremos el valor en el heap ya que no tiene un tamaño definido.
+
+
+Memory and Allocation
+
+   Variables and Data interacting with Move
+
+   - Las variables con datos simples pueden ser reasigandos a otras variables porque internamente se produce una copia del valor.
+   - Los valores simples tienen un tamaño conocido y valor fijo.
+   - Estos valores son almacenados en el stack.
+
+   - Las variables con datos complejos no tienen la misma facilidad de que los valores sean reasignados.En el caso de ellos el valor donde fue asignado al inicio al momento de hacer la copia a la otra variable lo que esta haciendo es transferirle el valor a esta segunda variable dejando sin valor al primero y con esto produciendo un error al momento de compilar.
+
+
+Variables and Data Interacting with Clone
+
+- Para poder copiar el valor de un tipo de variable compleja necesitamos usar el metodo clone y asi ese valor creara otro espacio en memoria con el mismo valor y evitaremos el error en tiempo de compilacion.
+
+Stack-Only Data : Copy
+
+Como en el libro mencionan para contradictorio que en un tipo de variable tengamos que declarar clone() para asiganar un valor a partir de una variable.Pero es que las vartiables simples tienes un tamaño conocido y son almacenados enteramente en un pila.
+
+Estos son unos de los tipos que se ejecuta internamente un Copy:
+
+- Todos los integer
+- Booleanos
+- Floating point
+- Los caracteres typo char
+- Tuples, si solo contiene un tipo uniforme
+
+Return Values and Scope
+
+Cada valor de una funcion es devuelto a la funcion y luego es eliminado ya que la variable dentro de la funcion el valor es eliminado.
+
+Para poder volver a usar un valor que se pasa por parametro de una funcion es necesario que se vuelva a retornar ese mismo valor pero en diferente variable para poder seguir usandolo.
+
+En el siguiente tema vamos a ver que en lugar de agregar una variable mas para poder mantener en uso el valor,podemos hacer el uso de las referencias que facilitan este trabajo.
+
+
+References and Borrowing
+
+Una referencia es como un puntero que tiene la direccion donde guardamos la data.Esta garantizado que se podra acceder a la informacion sin producir ningun tipo de error.
+
+- La variable necesita ir acompañado de un & .
+
+
+```
+fn main() {
+    let s1 = String::from("hello");
+
+    let len = calculate_length(&s1);
+
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+```
+
+Mutable references
+
+- Para poder modificar la variable necesitamos agregar un mut en la variable donde fue declarada inicialmente.
+
+- Se puede crear varias variables donde se les puede asignar la referencia de la variable principal.
+
+- Con respecto a la declaracion anqterior no sucede lo mismo cuano es mutable porque solo puede ser asignado a solo una nueva variable sino producir un error de que la bariable ya fue prestado anteriormente.
+
+```
+-- first borrow later used here
+
+```
+
+The rules of References
+
+- Podemos contar con una referencia o varias referencias inmutables.
+- Las referencias siempre deben de ser validas.
