@@ -4,3 +4,5 @@ guessing_game/target
 hello_cargo/target
 variables/target
 ownership/target
+rectangles/target
+struct_data/target

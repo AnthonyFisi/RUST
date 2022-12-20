@@ -255,3 +255,91 @@ The rules of References
 
 - Podemos contar con una referencia o varias referencias inmutables.
 - Las referencias siempre deben de ser validas.
+
+
+
+### 5.Using Structs to Struture Related Data
+
+#### 5.1 Defining and Instantaining Structs
+
+La estructura es similar a la tupla pero con la clara diferencia que cada valor tiene un significado.
+
+Las estrcuturas son mas flexibles porque no tienes que preocuparte el orden en el que tienes que agregar la informacion.
+
+
+Ejemplo : 
+
+```
+struct name {
+   variable1 : type,
+   variable2 : type,
+            .
+            .
+            .
+   variableN : type,
+}
+```
+
+Creating instances from  other instances with struct update syntax
+
+- En rust permite usar una instancia previamente creada y la informacion que contiene volver a reusarlo en la nueva instancia,modificando solo los datos que se requiera.
+
+- Necesitamos agregar dos puntos para poder agregar la instacia anterior.
+
+```
+let user2 = User {
+        email: String::from("another@example.com"),
+        ..user1
+        
+};
+
+```
+
+Using Tuple Structs without Named Fields to Create Different Types
+
+
+- Las estructuras similares a las tuplas no llevan un nombre asociado con cada valor.Son necesarias cuando necesitas nombrar una tupla y hacerla diferente de otra.
+
+- Podemos acceder a cada valor a traves de desestructurar cada valor en cada variable o tambien de cada valor pueda ser accedido por un punto y su respectivo indice.
+
+
+
+#### 5.2 An Example Program Using Structs
+
+Creamos un proyecto llamado Rectangulos que va calcular el area de un rectantulo.
+
+- Iniciamos usan una funcion con dos parametros para pasar el ancho y alto pero no es la forma mas eficiente.
+
+- Factorizamos las dos variables y ahora usamos tuples para almacenar las variables de ancho y alto pero la forma de acceder no es tan descriptiva porque usamos los indices lo cual visualmente no significa mucho.
+
+- Por ultimo creamos una estructura con las variables de ancho y alto,con esta estructura lista instanciamos y pasamos por parametro a la funcion para luego extraer los datos a traves de un punto y el nombre del atributo.Esta ultima forma es mas legible y elegante.
+
+Adding Useful Functionality with Derived Traits
+
+- Para poder imprimir la instancia de un estructura tenemos que declarar con un termino en especial.
+
+- Previamente en la parte superior debemos agregar esta linea codigo
+
+   #[derive(Debug)]
+
+   ```
+   println!("{:?}", struct_name);
+
+   ```
+
+
+#### Method Syntax
+
+Los metodos son similares a las funciones ya que son declarados con fn y contienen parametros y retornan valores.
+A diferencia de las funciones estan ligados al contexto de la estructura y siempre llevan un self como primer parametro.
+
+Para poder acceder a los metodos antes en la declaracion de cada metodo debemos de agregar la referencia a la primera variable & a self para evitar problemas en la compilacion.
+
+Methods with More Parameters
+
+- Podemos agregar mas parametros a cada metodo luego del parametro &self, teniendo en cuenta que cada uno de ellos siendo referenciado. ya que solo vamos a leer esos valores.
+
+
+Multiple impl Blocks
+
+- Podemos separar cada metodo en una diferente implementacion y no afectaria en el uso de cada metodo en las instancias.
