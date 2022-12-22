@@ -406,3 +406,33 @@ Tenemos un valor entero que sera asociado a algun valor mas adelante.
 let absent_number : Option<i32> = None ;
 
 ```
+
+#### 6.2 The match Control Flow Construct
+
+- Rust tiene un flujo de control llamado match que permite comparar valores contra una serie de patrones y luego ejecuta codigo.
+
+- El verdadero valor de match esta en las expresividad de los patrones que permite y el hecho de que los compiladores confirman todos los posibles casos que estan confirmando.
+
+
+Patterns that Bind to Values
+
+- En cada arm del match podemos crear un patron con los enum y los parametros que podemos declarar en cada uno de ellos y asi usar los vaores de los parametros para ejecutar algun sentencia necesaria dentro del bloque de codigo donde realize en match.
+
+Matches are Exhaustive
+
+- Los patrones de arm deberian de cubrir todas las posibilidades de lado contrario se producira un bug en la compilacion.
+
+- Los matches en rust son muy exhaustivos
+
+
+Catch-all Patterns and the _ Placeholder
+
+- Rust tiene un patron especial guion bajo (_),esto evita que usemos los valores que vienen en las variables y asi evitar que nos genere un warn.
+
+
+
+#### 6.3 Concise Control Flow with if let
+
+- Tenemos la posibilidad de reemplazar el match con if let para casoso donde solo tenemos que coinicidir con un solo valor e ignorar el resto.
+
+- Ademas ayuda evitar usar codigo innecesario para encontrar el match de un valor.

@@ -6,3 +6,5 @@ variables/target
 ownership/target
 rectangles/target
 struct_data/target
+enum/enum_data/target
+enum/control_flow/target
