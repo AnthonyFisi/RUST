@@ -343,3 +343,66 @@ Methods with More Parameters
 Multiple impl Blocks
 
 - Podemos separar cada metodo en una diferente implementacion y no afectaria en el uso de cada metodo en las instancias.
+
+
+### 6. Enums and Pattern Matching
+
+#### 6.1 Defining an Enum
+
+Los enums son ideales para agrupar un conjunto de valores y de ellos escoger solo uno.
+
+Ejemplo
+
+```
+ enum name {
+   variable1 ,
+   variable2 ,
+         .
+         .
+         .
+   variableN ,         
+ }
+```
+
+- El ejemplo de tener la posibilidad de tener un enum y agrupar los conjuntos de formas como circulo,triangulo y cuadrado.
+
+
+
+- Los enums nos dan la posibilidad de almacenar datos en cada variable declarada dentro del enum.
+
+```
+variable(<type1>,<type2>,<type3>, .... ,<typeN>)
+```
+
+-Para poder extraer un valor de enum tenemos que declarar de la siguiente forma.
+
+
+```
+let x = name_enum::variable(<type>) 
+```
+
+- Existen algunas estructuras que pueden ser reemplazados por un enum y tener mayor flexibilidad que la estrcutura.
+
+
+The Option Enum and Its Advantages Over Null Values
+
+```
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+```
+
+- En el lenguaje rust no existe los valores nulos por lo tanto tiene como alternativa usar los Option<T> como nulos.
+
+- Tenemos a None que es declarado si alguna variable no cuenta con un valor quiere inicializarse como nulo y en el transcurso de la ejecucion recibir un valor.
+
+Ejm: 
+Tenemos un valor entero que sera asociado a algun valor mas adelante.
+
+```
+
+let absent_number : Option<i32> = None ;
+
+```
