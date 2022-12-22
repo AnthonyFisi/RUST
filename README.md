@@ -436,3 +436,39 @@ Catch-all Patterns and the _ Placeholder
 - Tenemos la posibilidad de reemplazar el match con if let para casoso donde solo tenemos que coinicidir con un solo valor e ignorar el resto.
 
 - Ademas ayuda evitar usar codigo innecesario para encontrar el match de un valor.
+
+
+
+### 7. Managing Growing Projects with Packages, Crates , and Modules
+
+
+#### 7.1 Packages and Crates
+
+Crate
+
+- Crate es el bloque de codigo mas pequeño que el compilador de rust reconoce.
+- Crate viene en dos formas como binary crate o library crate.
+- Los binary crate siempre incluyen una funcion main que nos genera un ejecutable.
+- Los library crate no cuentan con un main function y no generan un ejecutable.Ellos estan destinados a ser compartidos con otros proyectos.
+
+Package
+
+- Un package es un conjunto de uno o mas crates que proveen de un conjunto de funcionalidades.
+- Un package contiene un archivo Cargo.toml que describe como construir los crates. 
+- Un package puede contener muchos binary crates como quiera, pero a lo mucho una library crate.
+
+
+#### 7.2 Defining Modules to Control Scope Privacy
+
+Module Cheat Sheet
+
+- Rust nos da una serie reglas detalladas para llevar en orden nuestro codigo.
+
+- Contamos con mod para declarar un modulo en un crate con la siguiente regla.
+
+   * mod module_name;
+- Contamos con mod tambien para crear submodulos que tienen que ir anidados en el modulo que los va usar.
+
+- Contamos con la palabra reservada pub que nos indica si un modulo es publico.Este pub va antes del mod en caso sea publico.
+
+- POr ultimo contamos con use que nos permite acceder a la informacion del modulo.
