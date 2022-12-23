@@ -471,4 +471,53 @@ Module Cheat Sheet
 
 - Contamos con la palabra reservada pub que nos indica si un modulo es publico.Este pub va antes del mod en caso sea publico.
 
-- POr ultimo contamos con use que nos permite acceder a la informacion del modulo.
+- Por ultimo contamos con use que nos permite acceder a la informacion del modulo.
+
+
+#### 7.3 Paths for Referring to an Item in the Module Tree
+
+- Contamos con dos tipos de rutas (Absolute y Relative) para referenciar un intem en el modulo.
+
+- Absolute : Permite el acceso a otros crate y comienza con el nombre de crate al inicio.
+
+- Relative : Se usa para hacer referencia a un modulo que es declarado en crate actual.
+
+- Absolute y Relative paths son seguidos por uno mas identificadores y separados por dos puntos seguidos.
+
+- Los modulos que creamos en rust por defecto son privados a menos que utilizemos el pub antes del mod para hacer accesible el modulo a otros crate.
+
+- Los enum y structs siguen las misma condiciones dentro de un modulo, por defecto son privados pero al momento de agregar el pub seran publicos.
+
+
+#### 7.4 Bringing Paths into Scope with the use Keyword
+
+- Para evitar declarar toda una ruta del item que deseamos acceder podemos reemplazar esta accion por solo declarar la ruta que queremos acceder hasta el modulo y luego en la funcion que deseamos usar item solo declarar por ejemplo una funcion a la que deseabamos ingresar.Todo esto agrega un poco mas de orden para el acceso a los item de los modulos.
+
+
+```
+use crate::<module_name1>::<module_name2>:: ... ::<module_nameN>;
+
+fn function_name(){
+
+   -- > module_function()
+
+}
+```
+
+- Contamos con as para renombrar los modulos que cuentan con el mismo nombre y asi evitar errores.
+
+- Podemos hacer de los paquetes externos,abrimos el archivo Cargo.toml podemos agregar el nombre de la dependencia y hacer uso de elllo.
+
+- Tenemos la posibilidad de factorizar el uso de modulos de la siguiente forma.
+
+```
+use <module_1>::<module_2>::{diferent1 , diferent2}
+```
+
+- Los glob operator nos permite traer todos los items de ese modulo con el signo de asterisco al final de los modulos.
+
+```
+use <module_1>::<module_2>::*;
+
+```
+
