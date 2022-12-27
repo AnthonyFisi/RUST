@@ -521,3 +521,27 @@ use <module_1>::<module_2>::*;
 
 ```
 
+### 8 Common Collections
+
+#### Storing List of Values with Vectors
+
+- Los vectores permiten almacenar mas que un valor en una sola estructura y almacena todos los valores uno al lado del otro en memoria.
+- Los vectores solo pueden almacenar el mismo tipo de valor.
+- Para crear un vector tiene la siguiente estructura 
+```
+let variable_name : Vec<type> = Vec::new();
+```
+- Rust puede inferir el tipo de valor del vector
+```
+let v = vec![value1, value2, value3 , .... , valueN]; 
+```
+
+- Para agregar un valor en un vector debemos agregar un mut en la variable y luego usar el metodo de push(value),con el cual vamos agregar un elemento mas al vector.
+- Para acceder a un valor de un vector podemos usar los indices o el metodo get.
+- Usamos el acceso a un vector por indices si queremos que el programa nos mande una alerta de error en el compilacion en caso el indice sea mayor a la cantidad determinada en el vector.
+- Usaremos get en caso queremos mostrar el acceso aun posicion mayor al que tiene el vector y nos muestre un mensaje amigable para el usuario.Indicandonos detalles acerca de la cantidad de elementos que tienes ese vector para realizar la correción.
+- En caso agreguemos un nuevo valor al vector este elimina las posiciones anteriores donde se encontraba almacenado consecutivamente los valores para crear un nuevo conjunto de valores consecutivos.Esto con el fin de cumplir con la definicion de un vector que deben de estar en memoria uno seguido de otro.
+- Para poder iterar nuestros valores debemos de usar un for y extraer todos los valores.En caso modifiquemos cada valor del vector vamos a realizar una referencia al vector para evitar los problemas de prestamos(borrowing).
+- Si queremos almacenar diferentes tipos de valores en un vector debemos de hacer uso del enum y crear una instancia con distintios tipos ya que un vector solo acepta un tipo de valor.
+- 
+
