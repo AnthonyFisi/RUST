@@ -523,7 +523,7 @@ use <module_1>::<module_2>::*;
 
 ### 8 Common Collections
 
-#### Storing List of Values with Vectors
+#### 8.1 Storing List of Values with Vectors
 
 - Los vectores permiten almacenar mas que un valor en una sola estructura y almacena todos los valores uno al lado del otro en memoria.
 - Los vectores solo pueden almacenar el mismo tipo de valor.
@@ -543,5 +543,50 @@ let v = vec![value1, value2, value3 , .... , valueN];
 - En caso agreguemos un nuevo valor al vector este elimina las posiciones anteriores donde se encontraba almacenado consecutivamente los valores para crear un nuevo conjunto de valores consecutivos.Esto con el fin de cumplir con la definicion de un vector que deben de estar en memoria uno seguido de otro.
 - Para poder iterar nuestros valores debemos de usar un for y extraer todos los valores.En caso modifiquemos cada valor del vector vamos a realizar una referencia al vector para evitar los problemas de prestamos(borrowing).
 - Si queremos almacenar diferentes tipos de valores en un vector debemos de hacer uso del enum y crear una instancia con distintios tipos ya que un vector solo acepta un tipo de valor.
-- 
+
+
+#### 8.2 Storing UTF-8 Encoded Text with Strings
+
+- Strings son colecciones porque son implementados como una coleccion de bytes y cuenta con metodos para proveerle funcionalidad para que los bytes sean interpretados como texto.
+
+- La creacion de un string sigue con la siguuente sintaxis.
+```
+let variable_name = String::new();
+```
+- Los strings estan condificados por UTF-8 para poder codificar cualquier tipo de dato.
+
+- Tenemos dos formas de poder agregar un string con otro previo (push_str y push).
+
+- push_str : Agrega una cadena de texto.
+
+- push : Agregar un solo caracter a la cadena de texto previo.
+
+- Si deseamos concatenar dos cadenas de string lo primer que debemos de hacer es hacer referencia de la segunda variable mas no de la primera ,Porque ?.En el metodo que implicitamente se ejecuta solo acepta la segunda variable como referencia y esto evita que tengamos un error en compilacion.
+
+- Contamos con el acceso a cada string por medio del indice [] con la condicion de ese pedazo de texto debe estar referenciado.
+
+```
+let hello = "Здравствуйте";
+
+let s = &hello[0..4];
+```
+#### 8.3 Storing Keys with Associated Values in Hash Maps
+
+- El hashmap almacena valores en clave y valor.
+- Los hashmap con buenos cuando quieres buscar informacion sin usar los indices.
+- Crear un nuevo hashmap siguen la siguiente sintaxis:
+
+```
+ let mut variable_name = HashMap::new();
+```
+
+- Para instanciar un hashmap debemos usar el siguiente modulo para utlizar los elementos que contiene.
+
+```
+use std::collections::HashMap;
+
+```
+
+- Para poder acceder a los valores del hasmap tenemos dos opciones : a traves de la llave del valor y a traves de usar un loop.
+
 
