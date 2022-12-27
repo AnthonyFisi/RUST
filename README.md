@@ -590,3 +590,46 @@ use std::collections::HashMap;
 - Para poder acceder a los valores del hasmap tenemos dos opciones : a traves de la llave del valor y a traves de usar un loop.
 
 
+
+### 9. Error Handling
+
+#### 9.1 Unrecoverable Errors with panic!
+
+- Contamos con panic! para poder mostrar los mesanjes de fallas que sucede al momento de compilar, con panic tenemos un explicacion mas explicita del error que esta sucediendo.
+
+- Antes de iniciar debemos agregar en el archivo de Cargo.toml la siguiente sentencia con el fin de habilitar una forma mas ligera de parar el programa.
+
+```
+[profile.release]
+panic = 'abort'
+
+```
+- Panic cuenta con la siguiente sintaxis.
+
+```
+   panic!("<message>")
+```
+
+- En un ejemplo de acceso a un vector que tiene 3 elementos pero en el ejemplo se accede a la posicion 99,esto genera que se poduzca un error y con panic nos da detalladamente el origen del problema.
+
+#### 9.2 Recoverable Errors with Result
+
+- En algunas ocasiones no va ser necesario para el programa por algun error que sucede sino manejar el error y para esa situacion Result<T,E> viene a calzar perfecto en este caso de uso.
+
+- Result <T,E> contiene la siguiente estructura:
+
+   * Ok(T) : Para la opcion en que logra hacer el match.
+   * Err(E) : En el caso contrario al match.
+```
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+
+```
+- Podemos usar varios Result anidados para poder mapear diferentes errores.
+- Una alternativa de usar match con Result<T,E> es usar unwrap_or_else que es mas facil de leet y comprender.
+
+- Contamos con unwrap que viene contenido con dos valores,en caso de exito nos retornara un Ok y en caso falle nos retornara un panic!.
+- Tenemos expect que tambien nos permite personalizar un mensaje de error en caso en el codigo tengamos alguna falla.
+
