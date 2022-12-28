@@ -633,3 +633,61 @@ enum Result<T, E> {
 - Contamos con unwrap que viene contenido con dos valores,en caso de exito nos retornara un Ok y en caso falle nos retornara un panic!.
 - Tenemos expect que tambien nos permite personalizar un mensaje de error en caso en el codigo tengamos alguna falla.
 
+
+### 10. Generic Types,Traits, and Lifetimes
+
+
+
+#### 10.1 Generic Data Types
+
+- Los tipos de datos genericos que son representados por convencion con una T nos proporcionan codigo mas flexible y provee mas funcionalidad para evitar codigo duplicado.
+
+- Para aceptar un tipo de dato generico debemos de declarar la variable de la siguiente manera.
+
+
+```
+fun name_function <T> (variable_name: &[T]) -> {
+   // code
+}
+```
+- Podemos utilizar los tipos de datos generales en los enums , estructuras y funciones.
+
+- Los genericos no afectan en el performance de los programas de rust.
+
+#### 10.2 Traits : Defining Shared Behavior
+
+#### 10.3 Validating References with Lifetimes
+
+- Los lifetimes son otro tipo de genericos.
+- Los lifetimes aseguran que la referencia spn validos a lo largo que nostros necesitamos de ellos.
+
+- Muchos de los lifetimes son implicitos e inferidos pero en algunos casos deben de ser declarados en los parametros para asegurar la referencia y ser usados en tiempo de compilacion.
+
+- El borrow checker que se encarga de verificar si todos los borrows son validos.
+
+- En rust contamos con un life annotation syntax que se encarga de referencia una variable de forma explicita y tiene la siguiente sintaxis.
+
+
+```
+&i32        // a reference
+&'a i32     // a reference with an explicit lifetime
+&'a mut i32 // a mutable reference with an explicit lifetime
+
+```
+
+- Reglas de life annotation son las siguientes : 
+
+   1. La primera regla es que el compilador asigna una referencia a cada parametro de la siguiente forma.
+
+
+      ```
+      fn foo<'a, 'b>(x: &'a i32, y: &'b i32)
+
+      ```
+   2. La segunda regla es que si solo existe un parametro debe contar con una referencia y tambien el valor de salida debe contar con una referencia.
+
+      ```   
+         fn foo<'a>(x: &'a i32) -> &'a i32
+      ```
+   3. La tercera regla es que si tenemos multiples parametros de entrada pero uno de ellos es &self o &mut self en un metodo,el lifetime de self es asignado a todas las salidas de los parametros de salida.
+
